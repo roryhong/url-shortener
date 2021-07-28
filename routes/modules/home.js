@@ -13,9 +13,6 @@ router.post('/', (req, res) => {
     let baseUrl = req.headers.host
     let protocol = req.protocol
     let short = ''
-    const validUrl = new RegExp('/^(ftp|http|https):\/\/[^"]+$/')
-
-    if(!validUrl.test(inputUrl)) res.redirect('/')
 
     Url.find()
         .lean()
