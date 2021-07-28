@@ -20,7 +20,7 @@
 
 進入專案目錄
 
-    cd url-shortener-main
+    cd url-shortener
 
 安裝套件
 
