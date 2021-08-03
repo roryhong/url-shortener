@@ -28,12 +28,12 @@ router.post('/', (req, res) => {
                 while (allUrl.some(findUrl => findUrl.shortUrl === short)) {
                     short = generate(5)
                 }
-            }
+            
                 Url.create({
                     originalUrl: inputUrl,
                     shortUrl: short
                 })
-            
+            }
 
             if(baseUrl === 'localhost:3000') {
                 baseUrl = `http://${baseUrl}/${short}`
