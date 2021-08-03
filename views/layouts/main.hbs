@@ -38,7 +38,7 @@
             copyBtn.addEventListener('click', () => {
                 window.getSelection().selectAllChildren(copyLink)
                 document.execCommand('Copy')
-            })
+            },{once : true})
         </script>
     </body>
 

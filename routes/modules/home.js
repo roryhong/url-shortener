@@ -11,31 +11,38 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const inputUrl = req.body.inputUrl.trim()
     let baseUrl = req.headers.host
-    let protocol = req.protocol
-    let short = ''
+    
 
     Url.find()
         .lean()
         .then(allUrl => {
             //確認是否已有網址
             existUrl = allUrl.filter(findUrl => findUrl.originalUrl === inputUrl)
+            let short = ''
             if (existUrl.length === 1) {
                 short = existUrl[0].shortUrl
             } else {
                 short = generate(5)
+            
                 //確認是否有重複的shortUrl
                 while (allUrl.some(findUrl => findUrl.shortUrl === short)) {
                     short = generate(5)
                 }
-
-                return Url.create({
+            }
+                Url.create({
                     originalUrl: inputUrl,
                     shortUrl: short
                 })
+            
+
+            if(baseUrl === 'localhost:3000') {
+                baseUrl = `http://${baseUrl}/${short}`
+            }else {
+                baseUrl = `https://${baseUrl}/${short}`
             }
 
-            const shortUrl = protocol + '://' + baseUrl + '/' + short
-            res.render('index', { inputUrl, short, shortUrl })
+            res.render('index', { inputUrl, short, baseUrl })
+            
         })
         .catch(error => {
             console.log(error)

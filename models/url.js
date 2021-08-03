@@ -4,11 +4,13 @@ const Schema = mongoose.Schema
 const shortUrlSchema = new Schema({
     originalUrl: {
         type: String,
-        required: true
+        required: true,
+        unique:true
     },
     shortUrl: {
         type: String,
-        required: true
+        required: true,
+        unique:true
     }
 })
 
