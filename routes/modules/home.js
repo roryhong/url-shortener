@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
         .lean()
         .then(allUrl => {
             //確認是否已有網址
-            existUrl = allUrl.filter(findUrl => findUrl.originalUrl === inputUrl)
+            const existUrl = allUrl.filter(findUrl => findUrl.originalUrl === inputUrl)
             let short = ''
             if (existUrl.length === 1) {
                 short = existUrl[0].shortUrl
